@@ -29,9 +29,9 @@ const protocols: Protocol[] = [
       Curve: "BLS12-381",
       "Privacy Model": "Shielded Pool",
       "State Model": "UTXO + Nullifier",
-      "Proof Size": "192 bytes",
+      "Proof Size": "384 bytes",
       Verification: "~1ms on-chain",
-      Status: "In Development",
+      Status: "Live on Testnet",
     },
   },
   {

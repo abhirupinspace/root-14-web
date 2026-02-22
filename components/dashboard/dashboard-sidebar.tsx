@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import {
   IconLayoutDashboard,
   IconWallet,
@@ -11,62 +11,32 @@ import {
   IconFileCode,
   IconSettings,
   IconPlugConnected,
+  IconExternalLink,
+  IconChevronRight,
+  IconFolder,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import {
-  Sidebar,
-  SidebarBody,
-  SidebarLink,
-  useSidebar,
-} from "@/components/ui/sidebar";
-import { useFreighter } from "@/hooks/useFreighter";
-
-const sidebarLinks = [
-  {
-    label: "Overview",
-    href: "/dashboard",
-    icon: (
-      <IconLayoutDashboard className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-    ),
-  },
-  {
-    label: "ZK Modules",
-    href: "/dashboard/modules",
-    icon: (
-      <IconShieldLock className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-    ),
-  },
-  {
-    label: "Indexer",
-    href: "/dashboard/indexer",
-    icon: (
-      <IconDatabase className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-    ),
-  },
-  {
-    label: "Contracts",
-    href: "/dashboard/contracts",
-    icon: (
-      <IconFileCode className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-    ),
-  },
-  {
-    label: "Settings",
-    href: "/dashboard/settings",
-    icon: (
-      <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-    ),
-  },
-];
+import { useWallet } from "@/contexts/wallet-context";
+import { useProjects } from "@/hooks/useProjects";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
+import { Separator } from "@/components/ui/separator";
 
 function truncateAddress(address: string): string {
   return `${address.slice(0, 4)}...${address.slice(-4)}`;
 }
 
-function WalletButton() {
-  const { open, animate } = useSidebar();
-  const { address, network, isFreighterInstalled, isConnecting, connect, disconnect } =
-    useFreighter();
+const projectSubNav = [
+  { label: "Overview", segment: "", icon: IconLayoutDashboard },
+  { label: "Modules", segment: "/modules", icon: IconShieldLock },
+  { label: "Indexer", segment: "/indexer", icon: IconDatabase },
+  { label: "Contracts", segment: "/contracts", icon: IconFileCode },
+  { label: "Settings", segment: "/settings", icon: IconSettings },
+];
+
+function WalletSection() {
+  const { address, network, isFreighterInstalled, isConnecting, error, connect, disconnect, clearError } =
+    useWallet();
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   if (!isFreighterInstalled) {
     return (
@@ -74,112 +44,176 @@ function WalletButton() {
         href="https://www.freighter.app/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 py-2 group/sidebar"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-amber-600 hover:bg-muted rounded-md transition-colors"
       >
-        <IconPlugConnected className="h-5 w-5 shrink-0 text-amber-500" />
-        <motion.span
-          animate={{
-            display: animate ? (open ? "inline-block" : "none") : "inline-block",
-            opacity: animate ? (open ? 1 : 0) : 1,
-          }}
-          className="text-amber-500 text-sm whitespace-pre"
-        >
-          Install Freighter
-        </motion.span>
+        <IconPlugConnected className="h-4 w-4" />
+        <span>Install Freighter</span>
       </a>
     );
   }
 
   if (address) {
     return (
-      <div className="flex flex-col gap-1">
+      <>
         <button
-          onClick={disconnect}
-          className="flex items-center gap-2 py-2 group/sidebar cursor-pointer"
+          onClick={() => setConfirmOpen(true)}
+          className="flex items-center gap-2 px-3 py-2 w-full text-left hover:bg-muted rounded-md transition-colors cursor-pointer"
         >
-          <div className="h-5 w-5 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center">
-            <div className="h-2 w-2 rounded-full bg-emerald-500" />
+          <div className="h-4 w-4 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
           </div>
-          <motion.span
-            animate={{
-              display: animate ? (open ? "inline-block" : "none") : "inline-block",
-              opacity: animate ? (open ? 1 : 0) : 1,
-            }}
-            className="text-neutral-700 dark:text-neutral-200 text-sm whitespace-pre group-hover/sidebar:translate-x-1 transition duration-150"
-          >
-            {truncateAddress(address)}
-          </motion.span>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-foreground truncate">{truncateAddress(address)}</p>
+            <p className="text-[11px] text-foreground/40">{network}</p>
+          </div>
         </button>
-        <motion.span
-          animate={{
-            display: animate ? (open ? "inline-block" : "none") : "inline-block",
-            opacity: animate ? (open ? 1 : 0) : 1,
+        <ConfirmDialog
+          open={confirmOpen}
+          onOpenChange={setConfirmOpen}
+          title="Disconnect Wallet"
+          description="You'll need to reconnect to access the dashboard again."
+          confirmLabel="Disconnect"
+          variant="danger"
+          onConfirm={() => {
+            disconnect();
+            setConfirmOpen(false);
           }}
-          className="text-neutral-500 text-xs whitespace-pre ml-7"
-        >
-          {network}
-        </motion.span>
-      </div>
+        />
+      </>
     );
   }
 
   return (
-    <button
-      onClick={connect}
-      disabled={isConnecting}
-      className="flex items-center gap-2 py-2 group/sidebar cursor-pointer disabled:opacity-50"
-    >
-      <IconWallet className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      <motion.span
-        animate={{
-          display: animate ? (open ? "inline-block" : "none") : "inline-block",
-          opacity: animate ? (open ? 1 : 0) : 1,
-        }}
-        className="text-neutral-700 dark:text-neutral-200 text-sm whitespace-pre group-hover/sidebar:translate-x-1 transition duration-150"
+    <div>
+      <button
+        onClick={connect}
+        disabled={isConnecting}
+        className="flex items-center gap-2 px-3 py-2 w-full text-left hover:bg-muted rounded-md transition-colors cursor-pointer disabled:opacity-50"
       >
-        {isConnecting ? "Connecting..." : "Connect Wallet"}
-      </motion.span>
-    </button>
-  );
-}
-
-function Logo() {
-  const { open, animate } = useSidebar();
-  return (
-    <Link
-      href="/dashboard"
-      className="flex items-center gap-2 py-1 relative z-20"
-    >
-      <img src="/icon.svg" alt="Logo" className="h-6 w-6" />
-      <motion.span
-        animate={{
-          display: animate ? (open ? "inline-block" : "none") : "inline-block",
-          opacity: animate ? (open ? 1 : 0) : 1,
-        }}
-        className="font-semibold text-black dark:text-white text-sm whitespace-pre"
-      >
-        Root14
-      </motion.span>
-    </Link>
+        <IconWallet className="h-4 w-4 text-foreground/50" />
+        <span className="text-sm text-foreground/70">
+          {isConnecting ? "Connecting..." : "Connect Wallet"}
+        </span>
+      </button>
+      {error && (
+        <button
+          onClick={clearError}
+          className="ml-9 text-[11px] text-red-500 cursor-pointer hover:text-red-400 transition-colors"
+        >
+          {error}
+        </button>
+      )}
+    </div>
   );
 }
 
 export function DashboardSidebar() {
+  const pathname = usePathname();
+  const { projects } = useProjects();
+
+  // Extract projectId from path: /dashboard/[projectId]/...
+  const pathParts = pathname.split("/").filter(Boolean);
+  const activeProjectId =
+    pathParts.length >= 2 && pathParts[0] === "dashboard" && pathParts[1] !== "new" && pathParts[1] !== "settings"
+      ? pathParts[1]
+      : null;
+
+  const activeProject = activeProjectId ? projects.find((p) => p.id === activeProjectId) : null;
+
   return (
-    <Sidebar>
-      <SidebarBody className="justify-between gap-10">
-        <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-          <Logo />
-          <div className="mt-8 flex flex-col gap-2">
-            {sidebarLinks.map((link) => (
-              <SidebarLink key={link.label} link={link} />
-            ))}
+    <aside className="hidden md:flex md:flex-col w-[240px] shrink-0 h-screen border-r border-border bg-sidebar">
+      {/* Logo */}
+      <div className="px-4 py-4">
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <img src="/icon.svg" alt="Logo" className="h-5 w-5" />
+          <span className="font-semibold text-sm text-foreground">Root14</span>
+        </Link>
+      </div>
+
+      <Separator />
+
+      {/* Main nav */}
+      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-1">
+        {/* Projects link */}
+        <Link
+          href="/dashboard"
+          className={cn(
+            "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors",
+            pathname === "/dashboard"
+              ? "bg-muted font-medium text-foreground"
+              : "text-foreground/60 hover:text-foreground hover:bg-muted/50"
+          )}
+        >
+          <IconFolder className="h-4 w-4" />
+          Projects
+        </Link>
+
+        {/* Active project sub-nav */}
+        {activeProject && (
+          <div className="ml-2 mt-1 space-y-0.5">
+            <p className="px-3 py-1 text-[11px] font-semibold text-foreground/40 uppercase tracking-wider truncate">
+              {activeProject.name}
+            </p>
+            {projectSubNav.map((item) => {
+              const href = `/dashboard/${activeProjectId}${item.segment}`;
+              const isActive =
+                item.segment === ""
+                  ? pathname === `/dashboard/${activeProjectId}`
+                  : pathname === href;
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.segment}
+                  href={href}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors",
+                    isActive
+                      ? "bg-muted font-medium text-foreground"
+                      : "text-foreground/50 hover:text-foreground hover:bg-muted/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
-        </div>
-        <div className="border-t border-neutral-200 dark:border-neutral-700 pt-4">
-          <WalletButton />
-        </div>
-      </SidebarBody>
-    </Sidebar>
+        )}
+
+        <Separator className="my-2" />
+
+        {/* Docs */}
+        <a
+          href="https://root14-docs.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-foreground/60 hover:text-foreground hover:bg-muted/50 transition-colors"
+        >
+          <IconExternalLink className="h-4 w-4" />
+          Docs
+        </a>
+
+        {/* Global Settings */}
+        <Link
+          href="/dashboard/settings"
+          className={cn(
+            "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors",
+            pathname === "/dashboard/settings"
+              ? "bg-muted font-medium text-foreground"
+              : "text-foreground/60 hover:text-foreground hover:bg-muted/50"
+          )}
+        >
+          <IconSettings className="h-4 w-4" />
+          Global Settings
+        </Link>
+      </nav>
+
+      <Separator />
+
+      {/* Wallet at bottom */}
+      <div className="px-3 py-3">
+        <WalletSection />
+      </div>
+    </aside>
   );
 }

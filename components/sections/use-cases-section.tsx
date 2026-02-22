@@ -14,14 +14,14 @@ export function UseCasesSection() {
         <ScrollReveal>
           <SectionHeader
             title="Use Cases"
-            subtitle="Privacy infrastructure for real applications"
+            subtitle="Complete privacy for every use case"
           />
         </ScrollReveal>
 
         <ScrollReveal delay={0.05}>
           <p className="text-xs leading-relaxed text-foreground/40 uppercase tracking-wider mb-8 max-w-lg">
-            Root14 isn&apos;t a mixer. It&apos;s programmable privacy — a foundation
-            for any application that needs confidential state on Stellar.
+            Root14 is a complete privacy solution — from payment confidentiality
+            to institutional compliance, one protocol covers it all.
           </p>
         </ScrollReveal>
 

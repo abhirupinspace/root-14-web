@@ -122,7 +122,7 @@ export function Navbar() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href="https://github.com"
+                  href="https://github.com/abhirupinspace/root-14-core"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(navigationMenuTriggerStyle(), "text-foreground/60")}
@@ -135,7 +135,7 @@ export function Navbar() {
           </NavigationMenu>
 
           <a
-            href="#architecture"
+            href="/dashboard"
             className="bg-accent text-background px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest hover:bg-foreground/90 transition-all hover:shadow-lg hover:shadow-accent/20"
           >
             <BookOpen className="inline-block h-3.5 w-3.5 mr-2 -mt-0.5" />
@@ -197,7 +197,7 @@ export function Navbar() {
               </a>
 
               <a
-                href="https://github.com"
+                href="https://github.com/abhirupinspace/root-14-core"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
@@ -208,7 +208,7 @@ export function Navbar() {
               </a>
 
               <a
-                href="#architecture"
+                href="/dashboard"
                 className="block bg-accent text-background px-5 py-3 text-xs font-bold uppercase tracking-widest text-center hover:bg-foreground/90 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >

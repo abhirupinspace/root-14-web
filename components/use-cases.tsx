@@ -7,26 +7,26 @@ const cases = [
   {
     tag: "01",
     title: "Private Payments",
-    desc: "Send and receive XLM without exposing balances or transaction history. Every transfer is shielded by default — no opt-in required.",
-    detail: "Commitment-based UTXO model hides sender, receiver, and amount on every transaction.",
+    desc: "Complete shielding for every payment. Not partial privacy — total confidentiality. Sender, receiver, amount, and balance are all hidden by default.",
+    detail: "Every transaction is fully shielded. No opt-in, no exceptions, no metadata leaks.",
   },
   {
     tag: "02",
     title: "Confidential DeFi",
-    desc: "Interact with Soroban protocols without leaking trading strategy, position sizes, or portfolio composition to front-runners.",
-    detail: "Zero-knowledge proofs verify constraints without revealing the underlying data.",
+    desc: "The full privacy solution for DeFi. Trade, lend, and swap without anyone seeing your strategy, position size, or portfolio.",
+    detail: "Complete confidentiality at every step — from order placement to settlement.",
   },
   {
     tag: "03",
     title: "Institutional Settlement",
-    desc: "Financial institutions can settle on Stellar with regulatory compliance and transaction privacy — simultaneously.",
-    detail: "Selective disclosure via proof metadata allows compliance without full transparency.",
+    desc: "Root14 solves the privacy-compliance tension completely. Institutions get full transaction privacy with selective disclosure for regulators.",
+    detail: "Private by default, compliant by design — the complete solution for institutional finance.",
   },
   {
     tag: "04",
     title: "Cross-Border Transfers",
-    desc: "Private remittances and international transfers. Recipients verified cryptographically without exposing corridor volumes.",
-    detail: "On-chain verification with off-chain privacy preserves the benefits of both worlds.",
+    desc: "End-to-end privacy from sender to recipient. Every cross-border transfer is fully shielded — no corridor volumes, no exposed routes.",
+    detail: "Complete privacy across borders — cryptographic verification without sacrificing confidentiality.",
   },
 ];
 

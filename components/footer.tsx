@@ -10,8 +10,9 @@ const footerLinks = {
     { label: "Standards", href: "#standards" },
   ],
   developers: [
-    { label: "Documentation", href: "#architecture" },
-    { label: "GitHub", href: "https://github.com", external: true },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Documentation", href: "https://root14-docs.vercel.app", external: true },
+    { label: "GitHub", href: "https://github.com/abhirupinspace/root-14-core", external: true },
     { label: "Use Cases", href: "#use-cases" },
     { label: "API Reference", href: "#architecture" },
   ],
@@ -24,8 +25,8 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com", icon: Github },
-  { label: "Twitter", href: "https://twitter.com", icon: Twitter },
+  { label: "GitHub", href: "https://github.com/abhirupinspace/root-14-core", icon: Github },
+  { label: "Twitter", href: "https://x.com/root14zk", icon: Twitter },
   { label: "Email", href: "mailto:hello@root14.dev", icon: Mail },
 ];
 
@@ -42,9 +43,8 @@ export function Footer() {
                 Root14
               </h3>
               <p className="text-xs leading-relaxed text-foreground/50 uppercase tracking-wider max-w-sm">
-                Zero-knowledge state transition infrastructure for the Stellar
-                Soroban VM. Private transfers, shielded balances, verifiable
-                computation.
+                Complete privacy solution for Stellar. Every transaction
+                shielded. Every balance hidden.
               </p>
             </div>
 
@@ -169,7 +169,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
               <span className="text-[10px] uppercase tracking-widest text-foreground/30">
-                © 2025 Root14 Protocol
+                © 2026 Root14 Protocol
               </span>
               <span className="hidden md:block text-foreground/20">·</span>
               <a
@@ -185,7 +185,7 @@ export function Footer() {
 
             <div className="flex items-center gap-6">
               <span className="text-[10px] uppercase tracking-widest text-foreground/20">
-                v0.1.0-alpha
+                v0.1.0
               </span>
             </div>
           </div>

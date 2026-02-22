@@ -16,15 +16,15 @@ export function Standards() {
         <ScrollReveal>
           <SectionHeader
             title="Standards"
-            subtitle="Root14 protocol specifications"
+            subtitle="Open specifications for complete privacy"
           />
         </ScrollReveal>
 
         <ScrollReveal delay={0.05}>
           <p className="text-xs leading-relaxed text-foreground/40 uppercase tracking-wider mb-6 max-w-lg">
-            Root14 is building open specifications for zero-knowledge privacy
-            on Stellar. These standards define interoperable primitives for any
-            team building on the protocol.
+            Root14 defines the privacy standard for Stellar. Open specifications
+            anyone can build on — interoperable primitives for complete
+            zero-knowledge privacy.
           </p>
         </ScrollReveal>
 

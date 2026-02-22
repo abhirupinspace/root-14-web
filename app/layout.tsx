@@ -71,7 +71,7 @@ const jetbrainsMono = localFont({
 export const metadata: Metadata = {
   title: "Root14",
   description:
-    "Zero-knowledge state transition infrastructure for the Stellar Soroban VM. Private transfers, shielded balances, verifiable computation.",
+    "Complete privacy solution for Stellar. Shield every transaction with zero-knowledge proofs — private transfers, confidential balances, and verifiable computation on Soroban.",
 };
 
 export default function RootLayout({

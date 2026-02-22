@@ -6,7 +6,7 @@ import { useRef } from "react";
 const publicData = [
   { label: "Nullifier", value: "0xd4e5...f6a7" },
   { label: "Commitment", value: "0x82b1...3c4d" },
-  { label: "Proof", value: "192 bytes" },
+  { label: "Proof", value: "384 bytes" },
   { label: "Merkle Root", value: "0x91fa...2b3c" },
   { label: "Tx Hash", value: "0xab12...ef34" },
 ];

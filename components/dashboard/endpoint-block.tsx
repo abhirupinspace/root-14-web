@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { StatusBadge } from "@/components/dashboard/status-badge";
 
 interface EndpointBlockProps {
   method: string;
@@ -33,6 +34,9 @@ export function EndpointBlock({ method, path, description, mockResponse }: Endpo
       {expanded && (
         <div className="border-t border-border/40 p-3 bg-off-white">
           <p className="text-xs text-foreground/50 mb-2 sm:hidden">{description}</p>
+          <div className="mb-2">
+            <StatusBadge label="Example Response" variant="info" />
+          </div>
           <pre className="text-xs font-mono text-foreground/70 overflow-x-auto whitespace-pre">
             {mockResponse}
           </pre>

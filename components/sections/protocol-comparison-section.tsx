@@ -20,8 +20,8 @@ export function ProtocolComparisonSection() {
 
         <ScrollReveal delay={0.05}>
           <p className="text-xs leading-relaxed text-foreground/40 uppercase tracking-wider mb-8 max-w-lg">
-            Root14 brings proven privacy primitives to Stellar. Here&apos;s how
-            it compares to established protocols in the space.
+            Root14 is the complete privacy solution Stellar has been missing.
+            Here&apos;s how it stacks up against established protocols.
           </p>
         </ScrollReveal>
 
@@ -31,9 +31,9 @@ export function ProtocolComparisonSection() {
           <div className="mt-8 border border-foreground/20 p-6 bg-background/80 backdrop-blur-sm card-elevated">
             <p className="text-xs leading-relaxed text-foreground/50 uppercase tracking-wider">
               <span className="text-foreground/70 font-bold">Verdict:</span>{" "}
-              Root14 combines Groth16&apos;s minimal proof size with BLS12-381&apos;s
-              full 128-bit security — deployed natively on Stellar. Same
-              cryptographic foundations as Zcash, purpose-built for Soroban.
+              Root14 delivers the full privacy stack others only partially
+              achieve — Groth16 efficiency, BLS12-381 security, and complete
+              shielded transactions, all native to Stellar.
             </p>
           </div>
         </ScrollReveal>

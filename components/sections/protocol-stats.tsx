@@ -13,8 +13,8 @@ export function ProtocolStats() {
       <div className="relative z-10 max-w-4xl mx-auto">
         <ScrollReveal>
           <SectionHeader
-            title="Built for Production"
-            subtitle="Core cryptographic configuration"
+            title="Privacy by Default"
+            subtitle="Production-grade cryptography, zero compromises"
           />
         </ScrollReveal>
 
@@ -26,7 +26,7 @@ export function ProtocolStats() {
               <DotLeader label="Merkle Depth" value="20" />
               <DotLeader label="Security Bits" value="128" />
               <DotLeader label="Instruction Budget" value="100M" />
-              <DotLeader label="Proof Size" value="192 BYTES" />
+              <DotLeader label="Proof Size" value="384 BYTES" />
               <DotLeader label="Verification Time" value="~1MS" />
               <DotLeader label="State Model" value="UTXO + NULLIFIER" />
             </div>
@@ -35,14 +35,15 @@ export function ProtocolStats() {
           <ScrollReveal delay={0.2}>
             <div className="text-xs leading-relaxed text-foreground/50 uppercase tracking-wider space-y-4">
               <p>
-                Root14 is production-grade privacy infrastructure for Stellar.
-                Every parameter is chosen to fit within Soroban&apos;s 100M
-                instruction budget while maintaining full 128-bit security.
+                Root14 is the complete privacy solution for Stellar. Every
+                transaction is shielded, every balance is hidden, every state
+                transition is private — all within Soroban&apos;s 100M instruction
+                budget at full 128-bit security.
               </p>
               <p>
-                The UTXO + nullifier model ensures private state transitions
-                without revealing sender, receiver, or amount — while the
-                chain validates correctness cryptographically.
+                Total confidentiality with full on-chain verifiability. The
+                chain proves every transaction is valid without ever learning
+                who sent it, who received it, or how much moved.
               </p>
             </div>
           </ScrollReveal>

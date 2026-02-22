@@ -13,16 +13,16 @@ export function ThreatModelSection() {
       <div className="relative z-10 max-w-4xl mx-auto">
         <ScrollReveal>
           <SectionHeader
-            title="What's Hidden"
-            subtitle="Observer view vs reality"
+            title="Total Confidentiality"
+            subtitle="What the chain sees vs what stays private"
           />
         </ScrollReveal>
 
         <ScrollReveal delay={0.05}>
           <p className="text-xs leading-relaxed text-foreground/40 uppercase tracking-wider mb-8 max-w-lg">
-            A chain observer sees proof data — enough to verify correctness,
-            nothing more. Sender, receiver, and amount stay hidden behind
-            zero-knowledge proofs.
+            Root14 delivers complete privacy. Observers can verify that every
+            transaction is valid, but learn nothing about who transacted, how
+            much moved, or with whom.
           </p>
         </ScrollReveal>
 

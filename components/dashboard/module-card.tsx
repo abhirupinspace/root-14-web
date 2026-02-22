@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { IconExternalLink } from "@tabler/icons-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { CopyButton } from "@/components/dashboard/copy-button";
@@ -12,8 +9,8 @@ interface ModuleCardProps {
   circuitId: string;
   constraintCount: string;
   vkStatus: "Testnet" | "Mainnet" | "Both";
-  snippet: string;
   icon: React.ReactNode;
+  comingSoon?: boolean;
 }
 
 export function ModuleCard({
@@ -22,11 +19,9 @@ export function ModuleCard({
   circuitId,
   constraintCount,
   vkStatus,
-  snippet,
   icon,
+  comingSoon,
 }: ModuleCardProps) {
-  const [expanded, setExpanded] = useState(false);
-
   const vkVariant = vkStatus === "Mainnet" || vkStatus === "Both" ? "success" : "warning";
 
   return (
@@ -39,7 +34,10 @@ export function ModuleCard({
             <p className="text-xs text-foreground/50 mt-0.5">{description}</p>
           </div>
         </div>
-        <StatusBadge label={vkStatus} variant={vkVariant} />
+        <div className="flex items-center gap-2">
+          {comingSoon && <StatusBadge label="Coming Soon" variant="warning" />}
+          <StatusBadge label={vkStatus} variant={vkVariant} />
+        </div>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
@@ -56,31 +54,15 @@ export function ModuleCard({
           </div>
         </div>
 
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-xs text-foreground/40 hover:text-foreground/70 transition-colors cursor-pointer"
+        <a
+          href="https://root14-docs.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-foreground/40 hover:text-foreground/70 transition-colors"
         >
-          {expanded ? (
-            <>
-              <IconChevronUp className="h-3 w-3" /> Hide snippet
-            </>
-          ) : (
-            <>
-              <IconChevronDown className="h-3 w-3" /> Code snippet
-            </>
-          )}
-        </button>
-
-        {expanded && (
-          <div className="relative">
-            <pre className="p-3 rounded-xl bg-off-white border border-border/40 text-xs font-mono text-foreground/70 overflow-x-auto">
-              {snippet}
-            </pre>
-            <div className="absolute top-2 right-2">
-              <CopyButton text={snippet} className="h-6 w-6" />
-            </div>
-          </div>
-        )}
+          <IconExternalLink className="h-3 w-3" />
+          View docs
+        </a>
       </CardContent>
     </Card>
   );

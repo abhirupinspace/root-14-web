@@ -9,25 +9,25 @@ const layers = [
     label: "L1",
     icon: "⛓",
     title: "Kernel",
-    desc: "Soroban smart contract. Verifies Groth16 proofs on-chain. Manages the Merkle tree of commitments and nullifier set.",
+    desc: "The trust anchor. A single Soroban smart contract that verifies Groth16 proofs on-chain, manages the Merkle tree, and enforces every privacy guarantee.",
     footer:
-      "Deploy once — all proof verification happens trustlessly on-chain.",
+      "One contract, infinite privacy — all verification happens trustlessly on-chain.",
   },
   {
     label: "L2",
     icon: "⊞",
     title: "Circuit",
-    desc: "Off-chain proof generation. Groth16 circuits over BLS12-381. Proves commitment validity, Merkle membership, and balance conservation.",
+    desc: "Privacy happens here. Groth16 circuits over BLS12-381 prove commitment validity, Merkle membership, and balance conservation — entirely on your device.",
     footer:
-      "Generate proofs client-side — no trusted third party required.",
+      "Your data never leaves your device — no trusted third party, ever.",
   },
   {
     label: "L3",
     icon: "⟳",
     title: "Indexer",
-    desc: "Event listener and state reconstructor. Watches Soroban events. Builds local Merkle tree replica for witness data.",
+    desc: "Seamless privacy without compromising usability. Watches Soroban events and builds a local Merkle tree replica so proofs are always ready.",
     footer:
-      "Always in sync — real-time state reconstruction from on-chain events.",
+      "Complete privacy, zero friction — real-time state sync from on-chain events.",
   },
 ];
 
@@ -42,8 +42,8 @@ export function Architecture() {
       <div className="relative z-10 max-w-4xl">
         <ScrollReveal>
           <SectionHeader
-            title="How It's Built"
-            subtitle="Three-layer proof infrastructure"
+            title="End-to-End Privacy Stack"
+            subtitle="Three layers, complete coverage"
           />
         </ScrollReveal>
 
