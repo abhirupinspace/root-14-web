@@ -19,8 +19,8 @@ export function KeyCard({ label, badge, onGenerate }: KeyCardProps) {
   const isPublic = badge === "Public";
 
   return (
-    <Card className="flex-1 min-w-[280px]">
-      <CardHeader className="flex-row items-center justify-between">
+    <Card className="flex-1 min-w-[280px] max-w-[20vw]">
+      <CardHeader className="flex! flex-row items-center justify-between">
         <div className="flex items-center gap-2">
           <IconKey className="h-4 w-4 text-foreground/50" />
           <CardTitle className="text-sm font-medium">{label}</CardTitle>

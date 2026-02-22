@@ -6,10 +6,10 @@ import { motion } from "motion/react";
 import {
   IconLayoutDashboard,
   IconWallet,
-  IconArrowsExchange,
+  IconShieldLock,
+  IconDatabase,
   IconFileCode,
   IconSettings,
-  IconLogout,
   IconPlugConnected,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
@@ -23,24 +23,24 @@ import { useFreighter } from "@/hooks/useFreighter";
 
 const sidebarLinks = [
   {
-    label: "Dashboard",
+    label: "Overview",
     href: "/dashboard",
     icon: (
       <IconLayoutDashboard className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
     ),
   },
   {
-    label: "Wallet",
-    href: "/dashboard/wallet",
+    label: "ZK Modules",
+    href: "/dashboard/modules",
     icon: (
-      <IconWallet className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      <IconShieldLock className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
     ),
   },
   {
-    label: "Transactions",
-    href: "/dashboard/transactions",
+    label: "Indexer",
+    href: "/dashboard/indexer",
     icon: (
-      <IconArrowsExchange className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      <IconDatabase className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
     ),
   },
   {
