@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, BookOpen, Cpu, Lock, FileText } from "lucide-react";
+import { Menu, X, Github, BookOpen, Cpu, Lock, FileText, Play } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -113,6 +113,15 @@ export function Navbar() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink
+                  href="/demo"
+                  className={cn(navigationMenuTriggerStyle(), "text-foreground/60")}
+                >
+                  <Play className="h-4 w-4 mr-2" /> Demo
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink
                   href="https://root14-docs.vercel.app/"
                   className={cn(navigationMenuTriggerStyle(), "text-foreground/60")}
                 >
@@ -194,6 +203,15 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 Use Cases
+              </a>
+
+              <a
+                href="/demo"
+                className="block text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                <Play className="inline-block h-4 w-4 mr-2 -mt-0.5" />
+                Demo
               </a>
 
               <a
